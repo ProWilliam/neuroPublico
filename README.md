@@ -44,7 +44,7 @@ DB_URI=tu_uri_de_mongodb_atlas
 npm run start
 ```
 
-4. Inicia el frontend:
+5. Inicia el frontend:
 ```bash
 cd ../frontend
 npm run dev
