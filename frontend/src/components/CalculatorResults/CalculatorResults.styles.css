@@ -154,7 +154,7 @@
 }
 
 .products-list.visible {
-  max-height: 180px;
+  max-height: 150px;
   padding: 10px; 
 }
 

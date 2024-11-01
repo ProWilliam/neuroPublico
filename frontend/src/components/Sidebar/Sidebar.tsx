@@ -13,7 +13,8 @@ import {
   PageWebIcon,
   CalculatorIcon,
   GraphUpArrowIcon,
-  InformationVariant
+  InformationVariant,
+  SettingsOutline
  } from '../Icons/index';
 
 export const Sidebar: React.FC = () => {
@@ -85,6 +86,12 @@ export const Sidebar: React.FC = () => {
           )}
         </div>
       ))}
+      <div className="config-button">
+        <SettingsOutline />
+        <p>
+          Configuración
+        </p>
+      </div>
     </div>
   );
 };

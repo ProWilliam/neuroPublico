@@ -67,3 +67,22 @@
 .sidebar-logo img{
   width: 90%;
 }
+
+.config-button {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-top: auto; 
+  margin-bottom: 20px;
+  margin-inline: 20px;
+  padding: 10px;
+  color: #6A6A6A;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.config-button svg {
+  margin-right: 10px;
+  width: 24px;
+  height: 24px;
+}
