@@ -7,6 +7,7 @@
 
 .main-content {
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
   margin-left: 50px; 
   margin-bottom: 50px;
@@ -14,6 +15,57 @@
   width: calc(100% - 250px);
   height: 100%;
   overflow-y: auto; 
+}
+
+.input-search-container {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 40px;
+  margin-inline: 300px;
+  padding-inline: 20px;
+  gap: 10px;
+  border-radius: 15px;
+  border: 1px solid #e0e0e0;
+  background: #FFFFFF;
+  color: #676464;
+}
+
+.support-section {
+  text-align: center;
+  width: 100%;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.support-section svg {
+  
+}
+
+.support {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+.support svg{
+  width: 31px;
+  height: 31px;
+}
+
+.input-search {
+  width: 100%;
+  border: 1px solid #e0e0e0;
+}
+
+.input-search .icon {
+  position: absolute;
+  left: 10px; /* Espaciado desde el lado izquierdo */
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* Evitar que el ícono interfiera con el input */
 }
 
 .support-section {
