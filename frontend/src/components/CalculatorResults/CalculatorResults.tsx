@@ -16,7 +16,7 @@ interface Product {
 
 export const CalculatorResults: React.FC = () => {
 
-  const { calculatorState, calculateProfit, resetCalculatorState, updateCalculatorState } = useCalculator();
+  const { calculatorState, updateCalculatorState } = useCalculator();
 
   const productsData: Product[] = [
     { id: 1, title: calculatorState.product, price: parseInt(calculatorState.pricePerUnit), cost: parseInt(calculatorState.costPerUnit) },
@@ -29,21 +29,11 @@ export const CalculatorResults: React.FC = () => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  console.log(error);
 
 
   const navigate = useNavigate();
   
-  const profit = calculateProfit();
-  const unitsNeeded = Math.ceil(Number(calculatorState.desiredMonthlyProfit) / profit);
-
-  const handleReset = () => {
-    resetCalculatorState();
-    navigate('..');  // Navega hacia atrás al formulario
-  };
-
-  const handleBack = () => {
-    navigate('..');  // Navega hacia atrás al formulario
-  };
 
   const handleToggleListVisibility = () => {
     setIsListVisible((prev) => !prev); 
@@ -85,8 +75,6 @@ export const CalculatorResults: React.FC = () => {
         costPerUnit: calculatorState.costPerUnit,
         desiredMonthlyProfit: calculatorState.desiredMonthlyProfit
       };
-
-      console.log(data);
 
       const result = await calculatorService.createProjection(data);
       console.log('Proyección creada:', result);
