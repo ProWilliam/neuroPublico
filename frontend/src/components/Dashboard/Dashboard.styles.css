@@ -1,0 +1,388 @@
+/* Dashboard.css */
+.dashboard {
+  font-family: system-ui, -apple-system, sans-serif;
+  width: 100%;
+  margin-right: 50px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.header h2 {
+  color: #012469;
+  font-size: 35px;
+  font-weight: 500;
+}
+
+.tabs {
+  display: flex;
+  gap: 16px;
+}
+
+.tab {
+  background: none;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #666;
+}
+
+.tab.active {
+  color: #0033cc;
+  position: relative;
+}
+
+.dashboard-container {
+  border-radius: 20px;
+  border: 1px solid #e0e0e0;
+  background-color: #f5f6fa;
+  border-radius: 16px;
+  padding: 20px;
+  max-height: 55vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.dashboard-container::-webkit-scrollbar {
+  inline-size: 8px; 
+}
+
+.dashboard-container::-webkit-scrollbar-thumb {
+  background: #666; 
+  border-radius: 10px; 
+}
+
+.dashboard-container::-webkit-scrollbar-track {
+  background: #f0f0f0; 
+  border-radius: 10px; 
+  height: 88%;
+}
+
+.main-card {
+  background: linear-gradient(335.54deg, #012469 23.18%, #002F8C 165.73%);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.billing-section {
+  padding-block: 10px;
+  padding-inline: 24px;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  border-radius: 10px;
+}
+
+.billing-left .label {
+  font-size: 19px;
+  opacity: 0.9;
+}
+
+.billing-left .amount {
+  font-size: 35px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.billing-right {
+  position: relative;
+}
+
+.cost-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.cost-item span {
+  font-size: 16px;
+  margin-right: 20px;
+}
+
+.toggle-btn {
+  position: relative;
+  top: 0;
+  right: 0;
+  background: none;
+  border: none;
+  color: white;
+  padding: 4px;
+  margin-right: 40px;
+}
+
+.toggle-btn svg{
+  width: 53px;
+  height: 53px;
+}
+
+.box-toggle {
+  display: flex;
+  text-align: center;
+  width: 53px;
+  height: 53px;
+  border-radius: 10px;
+  border: 1px solid white;
+}
+
+.product-section {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to bottom, #29457C, #3D66B7);
+  padding: 20px;
+  border-radius: 0 0 12px 12px;
+}
+
+.product-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.product-header h3 {
+  color: #FFFFFF;
+  font-size: 26px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.metric-card {
+  text-align: center;
+  box-shadow: 0px 4px 40px 0px #0000000D;
+  background-color: rgba(255,255,255,0.1);
+  padding: 16px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.metric-card.dark {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.metrics-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.metric-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #FFFFFF;
+  font-size: 19px;
+  margin-bottom: 8px;
+}
+
+.info-icon {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  color: #001866;
+  background-color: white;
+  font-size: 12px;
+  opacity: 0.8;
+  cursor: help;
+}
+
+.info-icon svg {
+  
+  width: 15px;
+  height: 15px;
+  
+  color: #001866;
+  
+}
+
+.metric-value {
+  color: #FFFFFF;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.progress-bar {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color:#D5E3FF;
+  border-radius: 0 0 8px 8px;
+}
+
+.progress {
+  height: 100%;
+  background-color: #4D88FF;
+  border-radius: 0 0 0 8px;
+}
+
+.line-dashboard {
+  inline-size: 98%;
+  border: 1px solid #E0E0E0;
+  margin: 10px;
+}
+
+.marketing-card {
+  display: flex;
+  padding: 24px;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.channel-section {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  height: 100%;
+}
+
+.section-label {
+  display: block;
+
+  font-family: Plus Jakarta Sans;
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 26.46px;
+  letter-spacing: -0.11428570002317429px;
+  text-align: left;
+  color: #000000;
+  margin-bottom: 12px;
+}
+
+.channel-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.channel-btn {
+  text-align:left;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  background: white;
+  color: #666;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.channel-btn.active {
+  background: linear-gradient(80.51deg, #2A457C -10.48%, #4D7EE2 164.61%);
+  color: white;
+  border: none;
+}
+
+.marketing-metrics {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  background: linear-gradient(80.51deg, #2A457C -10.48%, #4D7EE2 164.61%);
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.marketing-metrics h4 {
+  color: #ACC8FF;
+  font-size: 19px;
+  margin-bottom: 16px;
+}
+
+.marketing-metrics .metric-card {
+  background-color: #FFFFFF26;
+}
+
+.marketing-metrics .metric-header {
+  color: #FFFFFF;
+}
+
+.marketing-metrics .metric-value {
+  font-size: 30px;
+  color: #FFFFFF;
+}
+
+.metrics-marketing-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.marketing-metrics .progress-bar {
+  background-color: #D5E3FF;
+  ;
+}
+
+.marketing-metrics .progress {
+  background-color: #4D88FF;
+}
+
+.containter-whatsapp-button {
+  text-align: right;
+}
+
+.main-card-summary {
+  background: linear-gradient(335.54deg, #012469 23.18%, #002F8C 165.73%);
+  border-radius: 12px;
+  overflow: hidden;
+  padding-block: 20px;
+  padding-inline: 50px;
+}
+
+.billing-section-summary {
+  padding-block: 10px;
+  padding-inline: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+  border-radius: 10px;
+}
+.text-summary {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  font-size: 25px;
+  color: #B8CCF4;
+}
+
+.amount-sumary {
+  color: #FFFFFF;
+}
+
+.billing-section-summary h4{
+ margin: 0;
+}
+
+.whatsapp-button {
+  width: 408px;
+  padding: 14px;
+  background-color: white;
+  border: 1px solid #000000;
+  border-radius: 8px;
+  color: #03266B;
+  font-size: 23px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 20px;
+  margin-left: auto;
+}
+
+.whatsapp-button:hover {
+  background-color: #f5f6fa;
+}

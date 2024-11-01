@@ -1,0 +1,33 @@
+.app-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background: #f3f4f6; 
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px; 
+  margin-bottom: 50px;
+  padding: 20px;
+  width: calc(100% - 250px);
+  height: 100%;
+  overflow-y: auto; 
+}
+
+.support-section {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1; 
+  justify-content: center; 
+  min-height: 0;
+}
+
+

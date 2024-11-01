@@ -1,0 +1,50 @@
+.container {
+  max-width: 900px;
+  margin-top: 280vh;
+  padding: 16px;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px; /* Espacio entre las cartas */
+}
+
+.card {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.card-info {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.card-name {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.card-species {
+  color: #4a5568;
+  font-size: 0.875rem;
+}
