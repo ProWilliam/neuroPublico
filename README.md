@@ -22,19 +22,35 @@ Sigue estos pasos para instalar y ejecutar el proyecto en tu máquina local:
 
 1. Clona el repositorio:
 ```bash
-git clone https://github.com/tu-usuario/nombre-del-repositorio.git
-cd nombre-del-repositorio
+git clone https://github.com/ProWilliam/neuroPublico.git
+cd neuroPublico
 ```
 
 2. Navega a las carpetas correspondientes para el frontend y backend:
+
+Frontend:
 ```bash
 cd frontend
 npm install
+```
+
+Backend:
+```bash
 cd ../backend
 npm install
 ```
 
-3. Instala las dependencias del frontend:
+3. Instala las variables de entorno del frontend and Backend:
+
+- Frontend:
+  Crear archivo .env en la raíz de tu proyecto con la siguiente informacion.
+```env
+URL_BACKEND=tu_ip_backend_con_port
+PATH_PRODUCT=product
+```
+
+- Backend:
+  Crear archivo .env en la raíz de tu proyecto con la siguiente informacion.
 ```env
 DB_URI=tu_uri_de_mongodb_atlas
 ```
@@ -51,7 +67,7 @@ npm run dev
 ```
 
 ## Uso
-Puedes usar una herramienta como Postman para probar la API. Aquí tienes algunos ejemplos de rutas que puedes probar:
+Puedes usar una herramienta como Postman o Insomnia para probar la API. Aquí tienes algunos ejemplos de rutas que puedes probar:
 
-- POST /product - Obtiene la lista de personajes.
-- GET /product - Obtiene la lista de personajes.
+- POST /product - Crea la lista de producto.
+- GET /product - Obtiene la lista de producto.
