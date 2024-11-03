@@ -10,7 +10,7 @@ import coinImage from '../../../public/imageCoin.png';
 import './CreateProduct.styles.css';
 
 export const CreateProduct: React.FC = () => {
-  const { calculatorState, updateCalculatorState} = useCalculator();
+  const { calculatorState} = useCalculator();
   const { showCartNotification } = useNotification();
   const navigate = useNavigate();
 
