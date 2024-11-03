@@ -108,14 +108,12 @@ export const CalculatorResults: React.FC = () => {
                 className={`currency-switch left ${isPriceBadge ? '' : 'activate' }`}
                 onClick={() => setIsPriceBadge(false)}
               >
-                <span>$</span>
                 <span>USD</span>
               </div>
               <div 
                 className={`currency-switch right ${isPriceBadge ? 'activate' : '' }`}
                 onClick={() => setIsPriceBadge(true)}
               >
-                <span>$</span>
                 <span>COP</span>
               </div>
             </div>
