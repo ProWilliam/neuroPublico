@@ -39,6 +39,7 @@
 }
 
 .sidebar-item-icon svg {
+  display: flex;
   width: 24px;
   height: 24px;
 }
@@ -46,6 +47,11 @@
 .sidebar-item-text {
   font-size: 14px;
   color: #6A6A6A;
+}
+.sidebar-item.active {
+  .sidebar-item-text {
+    color: #FFFFFF;
+  }
 }
 
 .sidebar-divider {

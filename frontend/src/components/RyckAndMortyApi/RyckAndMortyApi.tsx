@@ -57,7 +57,7 @@ export const RickAndMortyList: React.FC = () => {
   }
 
   return (
-    <div className="container">
+    <div className="container-api">
       <h1 className="title">Personajes de Rick y Morty</h1>
       <div className="card-list">
         {characters.map((character) => (

@@ -1,21 +1,43 @@
 .calculator-card {
+  position: relative;
   width: 70%; 
   height: 60%;  
   margin: 20px 100px; 
   border-radius: 16px;
   border: 1px solid #dddce0;
   opacity: 1; 
+  overflow: hidden;
   background: linear-gradient(6.76deg, #ffffff 72.52%, #73bdff 148.03%);
   box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
-  padding: 20px 100px; 
+  padding: 100px; 
+}
+
+.image-coin {
+  position: absolute;
+  top: -16%;
+  left: 72%;
+  width: 505px;
+  height: 450px;
+  gap: 0px;
+  opacity: 0px;
+  object-fit: cover;
+  z-index: 1;
 }
 
 .sidebar-items-title {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.line-create-section {
+  position: relative;
+  left: -9%;
+  inline-size: 100%;
+  border: 1px solid #E0E0E0;
+  margin: 10px;
 }
 
 .sidebar-item-icon-card svg {
@@ -30,11 +52,16 @@
   padding-top: 6px;
 } 
 
+.sidebar-item-icon-card h1 {
+  z-index: 10;
+}
+
 .calculator-title {
   font-size: 60px; 
   color: #012469;
   font-weight: 800;
-  margin-bottom: 10px; 
+  margin-bottom: 20px; 
+  margin-left: 20px;
 }
 
 .calculator-subtitle {
@@ -43,9 +70,10 @@
 }
 
 .input-container {
-  display: flex;
-  flex-direction: column; 
-  gap: 15px; 
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columnas de igual tamaño */
+  gap: 16px; /* Espacio entre las columnas y filas */
+  margin-top: 16px;
 }
 
 .input-column {
@@ -54,11 +82,6 @@
   gap: 10px;
 }
 
-input {
-  padding: 10px; 
-  border: 1px solid #ccc; 
-  border-radius: 4px; 
-}
 
 .calculator-card .show-text {
   color: #ABAFB1;

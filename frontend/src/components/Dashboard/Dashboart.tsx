@@ -2,10 +2,10 @@
 import React, { useState } from 'react';
 import { DropDownIcon, QuestionMarkIcon } from '../Icons/index';
 import './Dashboard.styles.css';
-import { useCalculator } from '../../context/CalculatorContext';
+import { useCalculator } from '../../context/Calculator/CalculatorContext';
 import { DashboardMetrics } from '../../utils/DashboardCalculations';
 
-export const Dashboard: React.FC = () => {
+export const Dashboard: React.FC<{bange: boolean}> = ({bange}) => {
 
   const [activeTab, setActiveTab] = useState('Dashboard');
 
@@ -64,20 +64,20 @@ export const Dashboard: React.FC = () => {
             <div className="billing-section">
               <div className="billing-left">
                 <span className="label">Facturación</span>
-                <div className="amount">${DashboardMetrics.formatCurrency(totalBilling)}</div>
+                <div className="amount">{DashboardMetrics.formatCurrency(totalBilling, bange)}</div>
               </div>
               <div className="billing-right">
                 <div className="cost-item">
                   <span>Inversión en publicidad</span>
-                  <span className="value">-${DashboardMetrics.formatCurrency(costs.advertising)}</span>
+                  <span className="value">- {DashboardMetrics.formatCurrency(costs.advertising, bange)}</span>
                 </div>
                 <div className="cost-item">
                   <span>Costos variables</span>
-                  <span className="value">-${DashboardMetrics.formatCurrency(costs.variable)}</span>
+                  <span className="value">- {DashboardMetrics.formatCurrency(costs.variable, bange)}</span>
                 </div>
                 <div className="cost-item">
                   <span>Gastos fijos</span>
-                  <span className="value">-${DashboardMetrics.formatCurrency(costs.fixed)}</span>
+                  <span className="value">- {DashboardMetrics.formatCurrency(costs.fixed, bange)}</span>
                 </div>
               </div>
               <button className="toggle-btn">
@@ -98,7 +98,7 @@ export const Dashboard: React.FC = () => {
                       <QuestionMarkIcon />
                     </span>
                   </div>
-                  <div className="metric-value">${DashboardMetrics.formatCurrency(costPerSale)}</div>
+                  <div className="metric-value">{DashboardMetrics.formatCurrency(costPerSale, bange)}</div>
                   <div className="progress-bar">
                     <div className="progress" style={{width: '70%'}}></div>
                   </div>
@@ -126,7 +126,7 @@ export const Dashboard: React.FC = () => {
                       <QuestionMarkIcon />
                     </span>
                   </div>
-                  <div className="metric-value">${DashboardMetrics.formatCurrency(profitPerUnit)}</div>
+                  <div className="metric-value">{DashboardMetrics.formatCurrency(profitPerUnit, bange)}</div>
                 </div>
                 
                 <div className="metric-card">
@@ -169,7 +169,7 @@ export const Dashboard: React.FC = () => {
                 </div>
 
                 <div className="cost-sold">
-                  <div className="metric-value">${DashboardMetrics.formatCurrency(costPerMessage)}</div>
+                  <div className="metric-value">{DashboardMetrics.formatCurrency(costPerMessage, bange)}</div>
                   <div className="progress-bar">
                     <div className="progress" style={{width: '60%'}}></div>
                   </div>
@@ -213,7 +213,7 @@ export const Dashboard: React.FC = () => {
               </div>
               <div className="text-summary">
                 <span className="">Debes generar una Facturacíon de: </span>
-                <div className="amount-sumary">${DashboardMetrics.formatCurrency(totalBilling)}</div>
+                <div className="amount-sumary">{DashboardMetrics.formatCurrency(totalBilling, bange)}</div>
               </div>
             
             </div>

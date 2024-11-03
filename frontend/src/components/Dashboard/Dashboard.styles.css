@@ -1,8 +1,5 @@
-/* Dashboard.css */
 .dashboard {
   font-family: system-ui, -apple-system, sans-serif;
-  width: 100%;
-  margin-right: 50px;
 }
 
 .header {
@@ -385,4 +382,11 @@
 
 .whatsapp-button:hover {
   background-color: #f5f6fa;
+}
+
+@media (min-width: 1500px) {
+  .dashboard {
+    width: unset; 
+  }
+
 }

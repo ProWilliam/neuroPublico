@@ -1,7 +1,22 @@
-.container {
-  max-width: 900px;
-  margin-top: 280vh;
+.container-api {
+  max-block-size: 200vh;
   padding: 16px;
+  height: 60vh;
+  overflow-y: auto;
+}
+
+.container-api::-webkit-scrollbar {
+  inline-size: 8px; 
+}
+
+.container-api::-webkit-scrollbar-thumb {
+  background: white; 
+  border-radius: 10px; 
+}
+
+.container-api::-webkit-scrollbar-track {
+  background: #f0f0f0; 
+  border-radius: 10px; 
 }
 
 .title {

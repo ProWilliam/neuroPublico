@@ -1,18 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
-
-interface CalculatorState {
-  product: string;
-  pricePerUnit: string;
-  costPerUnit: string;
-  desiredMonthlyProfit: string;
-}
-
-interface CalculatorContextType {
-  calculatorState: CalculatorState;
-  updateCalculatorState: (field: keyof CalculatorState, value: string) => void;
-  resetCalculatorState: () => void;
-  calculateProfit: () => number;
-}
+import { CalculatorContextType, CalculatorState } from './CalculatorContext.type';
 
 const initialState: CalculatorState = {
   product: '',

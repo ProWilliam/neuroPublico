@@ -2,7 +2,6 @@
   line-height: 1.5;
   font-weight: 400;
 
-  /* Colors Fount */
   --colorwords: #6A6A6A
 
   color-scheme: light dark;
@@ -18,7 +17,7 @@
 
 
 html, body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: Plus Jakarta Sans;
   margin: 0;
   padding: 0;
   height: 100%; /* Asegura que ocupen toda la pantalla */

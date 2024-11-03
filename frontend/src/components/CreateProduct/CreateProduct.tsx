@@ -1,11 +1,17 @@
-import React, {useState} from 'react'
-import { CalculatorIcon } from '../Icons/CalculatorIcon';
-import { useCalculator } from '../../context/CalculatorContext';
+import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { useCalculator } from '../../context/Calculator/CalculatorContext';
+import { useNotification } from '../../context/Notifications/NotificationContext';
+import { InputCreate } from '../InputCreate/InputCreate';
+
+import { CalculatorIcon} from '../Icons/index';
+import coinImage from '../../../public/imageCoin.png';
 import './CreateProduct.styles.css';
 
 export const CreateProduct: React.FC = () => {
   const { calculatorState, updateCalculatorState} = useCalculator();
+  const { showCartNotification } = useNotification();
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
@@ -22,6 +28,7 @@ export const CreateProduct: React.FC = () => {
       }
       
       navigate('dashboard');
+      showCartNotification('Producto agregado')
       
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error al crear la proyección');
@@ -32,6 +39,7 @@ export const CreateProduct: React.FC = () => {
 
   return (
     <div className="calculator-card">
+      <img src={coinImage} alt="Coin image" className="image-coin"/>
       <div className="sidebar-items-title">
         <div className="sidebar-item-icon-card">
           <CalculatorIcon />
@@ -40,41 +48,16 @@ export const CreateProduct: React.FC = () => {
           Calculadora de ventas
         </h1>
       </div>
-      <br />
-      <hr />
+      <div className="line-create-section"></div>
       <p className="calculator-subtitle">Completa la información</p>
       <div className="input-container">
-        <div className="input-column">
-          <input
-            type="text"
-            placeholder="Producto"
-            value={calculatorState.product}
-            onChange={(e) => updateCalculatorState('product', e.target.value)}
-          />
-          <input
-            type="number"
-            placeholder="Precio por unidad"
-            value={calculatorState.pricePerUnit}
-            onChange={(e) => updateCalculatorState("pricePerUnit", e.target.value)}
-          />
-        </div>
-        <div className="input-column">
-          <input
-            type="number"
-            placeholder="Costo por unidad"
-            value={calculatorState.costPerUnit}
-            onChange={(e) => updateCalculatorState('costPerUnit', e.target.value)}
-          />
-          <input
-            type="number"
-            placeholder="Utilidad mensual deseada"
-            value={calculatorState.desiredMonthlyProfit}
-            onChange={(e) => updateCalculatorState('desiredMonthlyProfit', e.target.value)}
-          />
-        </div>
+        <InputCreate  title='Producto' fieldKey='product'  placeholderInput='Tennis deportivos'/>
+        <InputCreate  title='Precio por unidad' fieldKey='pricePerUnit' placeholderInput='$39' />
+        <InputCreate  title='Costo por unidad' fieldKey='costPerUnit' placeholderInput='$11' />
+        <InputCreate  title='Utilidad mensual deseada' fieldKey='desiredMonthlyProfit' placeholderInput='$50.000' />
       </div>
       <p className="show-text">
-        Cuanto te cuesta crear o fabricar el producto
+        Cuánto te cuesta crear o fabricar el producto
       </p>
       <button className="calculate-button" onClick={handleSubmit}>
         {loading ? 'Creando...' : 'Crear proyección'}

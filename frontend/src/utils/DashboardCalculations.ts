@@ -84,10 +84,10 @@ export class DashboardMetrics {
   }
 
   // Formatear números para mostrar en pantalla
-  static formatCurrency(amount: number): string {
+  static formatCurrency(amount: number, bange: boolean): string {
     return new Intl.NumberFormat('es-ES', {
       style: 'currency',
-      currency: 'COP',
+      currency: bange ? 'COP' : 'USD',
       minimumFractionDigits: 0,
       maximumFractionDigits: 0
     }).format(amount);

@@ -11,8 +11,8 @@
   align-items: center;
 }
 
-.title {
-  font-size: 24px;
+.title-calculator {
+  font-size: 38px;
   font-weight: bold;
   color: #012469;
 }
@@ -24,8 +24,8 @@
 }
 
 .header-right svg {
-  width: 30px;
-  height: 30px;
+  inline-size: 30px;
+  block-size: 30px;
 }
 
 .button-return:hover {
@@ -41,7 +41,7 @@
 .prices {
   display: flex;
   flex-direction: row;
-
+  cursor: pointer;
 }
 
 .currency-switch {
@@ -108,12 +108,20 @@
 }
 
 #utils {
-  width: 80%;
+  inline-size: 80%;
+  text-align: start;
   margin-block: 20px;
   border-radius: 10px;
   border: 1px solid #e0e0e0;
   color: #000000;
+  padding-block-start: 20px;
 }
+
+#utils::placeholder {
+  color: #000000;
+  font-size: 25px;
+}
+
 
 .sidebar-resul p {
   margin: 10px 0;
@@ -137,8 +145,8 @@
 }
 
 .drop-product svg {
-  width: 30px; 
-  height: 30px;
+  inline-size: 30px; 
+  block-size: 30px;
 }
 
 .products-list {
@@ -154,7 +162,7 @@
 }
 
 .products-list.visible {
-  max-height: 150px;
+  max-block-size: 150px;
   padding: 10px; 
 }
 
@@ -183,7 +191,7 @@
 }
 
 .vertical-line {
-  width: 2px; 
+  inline-size: 2px; 
   background-color: #E0E0E0; 
   margin: 0 10px; 
 }
@@ -193,14 +201,14 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  height: 122%;
+  block-size: 122%;
   inline-size: 20px; 
   text-align: center; 
   font-weight: bold;
-  border-right: 1px solid #E0E0E0;
+  border-inline-end: 1px solid #E0E0E0;
 }
 .product-id {
-  margin-right: 20px;
+  margin-inline-end: 20px;
   font-size: 31px;
   color: #676464;
 }
@@ -214,7 +222,7 @@
 .product-title {
   font-weight: bold; 
   margin-block-end: 5px;
-  width: 218px;
+  max-inline-size: 80%;
   white-space: nowrap;  
   overflow: hidden;       
   text-overflow: ellipsis; 
@@ -225,7 +233,7 @@
   flex-direction: row;
   gap: 10px;
   text-align: center;
-  margin-bottom: 5px;
+  margin-block-end: 5px;
 }
 
 .date-product span {
@@ -253,12 +261,12 @@
 }
 
 .section-cost {
-  margin-top: 10px;
+  margin-block-start: 10px;
 } 
 
 .products-cost {
   display: flex;
-  margin-left: 20px;
+  margin-inline-start: 20px;
   flex-direction: column;
   padding: 0 10px;
   block-size: 50%;
@@ -271,9 +279,9 @@
 }
 
 .products-cost.visible {
-  max-height: 140px; 
+  max-block-size: 140px; 
   padding: 0 10px; 
-  margin-left: 20px;
+  margin-inline-start: 20px;
 }
 
 .products-cost span {
@@ -300,13 +308,13 @@
 
 
 .percentage input {
-  width: 88%;
+  inline-size: 88%;
   border-radius: 10px;
   border: 1px solid #e0e0e0;
 }
 
 .open-product-button {
-  width: 100%;
+  inline-size: 100%;
   margin-block: 20px;
   padding: 8px 16px;
   border-radius: 10px;
