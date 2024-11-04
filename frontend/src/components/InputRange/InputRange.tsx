@@ -4,7 +4,7 @@ import { useCalculator } from '../../context/Calculator/CalculatorContext';
 import { InputRangeProps } from './InputRange.type';
 
 export const InputRange:React.FC<InputRangeProps> = ({field}) => {
-  const { calculatorState, updateProgress } =  useCalculator();
+  const { calculatorState } =  useCalculator();
   const progressBarRef = useRef<HTMLDivElement | null>(null);
   const [progress, setProgress] = useState(0);
 
@@ -17,7 +17,7 @@ export const InputRange:React.FC<InputRangeProps> = ({field}) => {
     }
   }, [calculatorState[field]]);
 
-  const handleMouseDown = (event: any) => {
+  const handleMouseDown = () => {
     const handleMouseMove = (e: any) => {
       if (progressBarRef.current) {
         const progressBar = progressBarRef.current;
