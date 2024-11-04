@@ -6,6 +6,14 @@ const initialState: CalculatorState = {
   pricePerUnit: '',
   costPerUnit: '',
   desiredMonthlyProfit: '',
+  revenue: 0,         
+  adSpend: 0,         
+  variableCosts: 0,   
+  fixedCosts: 0,      
+  totalSales: 0,      
+  totalMessages: 0,   
+  conversations: 0,
+  closedDeals: 0
 };
 
 const CalculatorContext = createContext<CalculatorContextType | undefined>(undefined);
@@ -13,12 +21,26 @@ const CalculatorContext = createContext<CalculatorContextType | undefined>(undef
 export function CalculatorProvider({ children }: { children: ReactNode }) {
   const [calculatorState, setCalculatorState] = useState<CalculatorState>(initialState);
 
-  const updateCalculatorState = (field: keyof CalculatorState, value: string) => {
+  const updateCalculatorState = (updates: Partial<CalculatorState> | keyof CalculatorState, value?: string) => {
+    if (typeof updates === "string") {
+      setCalculatorState(prev => ({
+        ...prev,
+        [updates]: value
+      }));
+    } else {
+      setCalculatorState(prev => ({
+        ...prev,
+        ...updates
+      }));
+    }
+  };
+
+  const updateProgress = ( field :keyof CalculatorState,  value: number) => {
     setCalculatorState(prev => ({
       ...prev,
       [field]: value
     }));
-  };
+  }
 
   const resetCalculatorState = () => {
     setCalculatorState(initialState);
@@ -35,6 +57,7 @@ export function CalculatorProvider({ children }: { children: ReactNode }) {
       value={{
         calculatorState,
         updateCalculatorState,
+        updateProgress,
         resetCalculatorState,
         calculateProfit
       }}

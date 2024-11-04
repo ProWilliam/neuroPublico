@@ -221,7 +221,7 @@ export const CalculatorResults: React.FC = () => {
                 { isFixedVisible ? <DropUpIcon /> : <DropDownIcon  />  }
               </div>
               
-              <h3>Costo Variables:</h3>
+              <h3>Gastos fijos:</h3>
             </div>
             <div className={`products-cost ${isFixedVisible ? 'visible' : ''}`}>
 

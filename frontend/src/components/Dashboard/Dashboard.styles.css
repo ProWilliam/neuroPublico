@@ -168,6 +168,7 @@
   background-color: rgba(0,0,0,0.1);
 }
 
+
 .metrics-title {
   display: flex;
   flex-direction: row;
@@ -178,10 +179,21 @@
 .metric-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   color: #FFFFFF;
   font-size: 19px;
-  margin-bottom: 8px;
+  gap: 20PX;
+}
+
+.content-cost-sold {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-icon-cost-sold {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .info-icon {
@@ -213,14 +225,12 @@
   font-weight: 600;
 }
 
-.progress-bar {
-  position: relative;
-  bottom: 0;
-  left: 0;
+.progress-bar-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  height: 4px;
-  background-color:#D5E3FF;
-  border-radius: 0 0 8px 8px;
+  margin-top: 20px;
 }
 
 .progress {

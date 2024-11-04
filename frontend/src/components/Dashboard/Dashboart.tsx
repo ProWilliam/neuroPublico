@@ -1,28 +1,21 @@
-// Dashboard.tsx
-import React, { useState } from 'react';
-import { DropDownIcon, QuestionMarkIcon } from '../Icons/index';
-import './Dashboard.styles.css';
+import React, { useState, useEffect } from 'react';
 import { useCalculator } from '../../context/Calculator/CalculatorContext';
 import { DashboardMetrics } from '../../utils/DashboardCalculations';
+import { InputRange } from '../InputRange/InputRange';
+import { DropDownIcon, QuestionMarkIcon } from '../Icons/index';
+import { sampleData } from '../../constants/mockData';
+import './Dashboard.styles.css';
 
 export const Dashboard: React.FC<{bange: boolean}> = ({bange}) => {
+  console.log("entre");
 
   const [activeTab, setActiveTab] = useState('Dashboard');
 
   // Ejemplo de datos
-  const sampleData = {
-    revenue: 945778400,
-    adSpend: 281932100,
-    variableCosts: 380873388,
-    fixedCosts: 67900092,
-    totalSales: 9016,
-    totalMessages: 200000,
-    conversations: 137859,
-    closedDeals: 9016
-  };
+  
 
-  // Context de tatos
-  const {calculatorState} = useCalculator();
+  // Context de datos
+  const {calculatorState, updateCalculatorState} = useCalculator();
 
   console.log(calculatorState);
 
@@ -37,6 +30,10 @@ export const Dashboard: React.FC<{bange: boolean}> = ({bange}) => {
   const costPerMessage = metrics.getCostPerMessage();
   const closeRate = metrics.getCloseRate();
   const profitPerUnit = metrics.getProfitPerUnit();
+
+  useEffect(() => {
+    updateCalculatorState(sampleData); 
+  }, []);
 
   return (
     <div className="dashboard">
@@ -93,14 +90,16 @@ export const Dashboard: React.FC<{bange: boolean}> = ({bange}) => {
 
                 <div className="metric-card" style={{width: '62%', marginLeft: '20px'}}>
                   <div className="metric-header">
-                    <span>Costo por venta</span>
-                    <span className="info-icon">
-                      <QuestionMarkIcon />
-                    </span>
-                  </div>
-                  <div className="metric-value">{DashboardMetrics.formatCurrency(costPerSale, bange)}</div>
-                  <div className="progress-bar">
-                    <div className="progress" style={{width: '70%'}}></div>
+                    <div className="content-cost-sold">
+                      <span>Costo por venta</span>
+                      <div className="metric-value">{DashboardMetrics.formatCurrency(costPerSale, bange)}</div>
+                    </div>
+                    <InputRange field="totalSales" />
+                    <div className="info-icon-cost-sold">
+                      <span className="info-icon">
+                        <QuestionMarkIcon />
+                      </span>
+                    </div>
                   </div>
                 </div>
 
@@ -162,19 +161,19 @@ export const Dashboard: React.FC<{bange: boolean}> = ({bange}) => {
               <h4>Métricas de marketing</h4>
               <div className="metric-card" style={{width: '60%'}}>
                 <div className="metric-header">
-                  <span>Costo por mensaje</span>
-                  <span className="info-icon">
-                    <QuestionMarkIcon />
-                  </span>
+                  <div className="content-cost-sold">
+                      <span>Costo por mensaje</span>
+                      <div className="metric-value">{DashboardMetrics.formatCurrency(costPerMessage, bange)}</div>
+                    </div>
+                    <div className="progress-bar-message">
+                      <InputRange field="adSpend"/>
+                    </div>
+                    <div className="info-icon-cost-sold">
+                      <span className="info-icon">
+                        <QuestionMarkIcon />
+                      </span>
+                    </div>
                 </div>
-
-                <div className="cost-sold">
-                  <div className="metric-value">{DashboardMetrics.formatCurrency(costPerMessage, bange)}</div>
-                  <div className="progress-bar">
-                    <div className="progress" style={{width: '60%'}}></div>
-                  </div>
-                </div>
-
               </div>
               </div>
               <div className="metrics-marketing-row">

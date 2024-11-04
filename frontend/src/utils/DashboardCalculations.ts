@@ -1,7 +1,7 @@
 // DashboardCalculations.ts
 
 interface SaleData {
-  revenue: number;          // Ingresos totales
+  revenue: number;         // Ingresos totales
   adSpend: number;         // Inversión en publicidad
   variableCosts: number;   // Costos variables
   fixedCosts: number;      // Gastos fijos
