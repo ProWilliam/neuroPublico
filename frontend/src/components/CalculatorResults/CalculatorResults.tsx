@@ -106,12 +106,12 @@ export const CalculatorResults: React.FC = () => {
         desiredMonthlyProfit: calculatorState.desiredMonthlyProfit
       };
 
-      // const result = await calculatorService.createProjection(data);
+      const result = await calculatorService.createProjection(data);
 
       
       navigate('/calculator')
       resetCalculatorState();
-      // console.log('Proyección creada:', result);
+      console.log('Proyección creada:', result);
       
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error al crear la proyección');
