@@ -118,7 +118,7 @@ export const Dashboard: React.FC<{bange: boolean}> = ({ bange }) => {
                     transform: `translateX(-${currentSlide * 452.5}px%)`,
                   }}
                 >
-                  {arrayProduct.map(( product ,index) => (
+                  {arrayProduct.map(( _,index) => (
                     <div className="carousel-item" key={index}>
                       <ProductIteratorDetails bange={bange} />
                     </div>
