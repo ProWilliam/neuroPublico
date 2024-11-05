@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCalculator } from '../../context/Calculator/CalculatorContext';
+import { useNotification } from '../../context/Notifications/NotificationContext';
 import { ArrowReturnIcon, DropDownIcon, DropUpIcon } from '../Icons/index';
 import { AddProductButton } from '../ButtonAdd/ButtonAdd';
 import { Dashboard } from '../Dashboard/Dashboart';
@@ -17,6 +18,7 @@ interface Product {
 export const CalculatorResults: React.FC = () => {
 
   const { calculatorState, updateCalculatorState } = useCalculator();
+  const { showCartNotification } = useNotification();
 
   const productsData: Product[] = [
     { id: 1, title: calculatorState.product, price: parseInt(calculatorState.pricePerUnit), cost: parseInt(calculatorState.costPerUnit) },
@@ -27,6 +29,7 @@ export const CalculatorResults: React.FC = () => {
   const [isCostVisible, setIsCostVisible] = useState(true);
   const [isFixedVisible, setIsFixedVisible] = useState(true);
   const [isPriceBadge, setIsPriceBadge] = useState(true);
+  const [isOpenDetails, setIsOpenDetails] = useState(false);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -46,6 +49,16 @@ export const CalculatorResults: React.FC = () => {
 
   const handleToggleFixedVisibility = () => {
     setIsFixedVisible((prev) => !prev); 
+  };
+
+  const handleToggleOpenDetails = () => {
+    setIsCostVisible(false);
+    setIsFixedVisible(false);
+    setIsListVisible(false);
+    setIsOpenDetails((prev) => !prev); 
+    if(isOpenDetails){
+      showCartNotification('Cambios Guardados')
+    }
   };
 
   const handleAddNewProduct = () => {
@@ -229,12 +242,37 @@ export const CalculatorResults: React.FC = () => {
                 <span>Gastos totales</span>
                 <input type="number" placeholder="$34,900"/>
               </div>
-
-              <button className="open-product-button">
-                Abrir detalles
-              </button>
               
             </div>
+
+
+            <div className={`products-details ${isOpenDetails ? 'visible' : ''}`}>
+              <div className="cost-setting">
+                <span>Salarios</span>
+                <input type="number" placeholder="$34,900"/>
+              </div>
+              <div className="cost-setting">
+                <span>Plataforma</span>
+                <input type="number" placeholder="$34,900"/>
+              </div>
+              <div className="cost-setting">
+                <span>Arriendos</span>
+                <input type="number" placeholder="$34,900"/>
+              </div>
+              <div className="cost-setting">
+                <span>Otros</span>
+                <input type="number" placeholder="$34,900"/>
+              </div>
+              <div className="total-cost">
+                <span>Total</span>
+                <span>$45,502,002</span>
+              </div>
+            </div>
+            
+            <button className={`open-product-button ${isOpenDetails ? 'activate' : ''}`} onClick={handleToggleOpenDetails}>
+              {isOpenDetails ? 'Guardar cambios' : 'Abrir detalles'}
+            </button>
+            
           </div>
         </div>
         <div className="right-space">
