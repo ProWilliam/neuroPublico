@@ -162,7 +162,7 @@
 }
 
 .products-list.visible {
-  max-block-size: 150px;
+  max-block-size: 350px;
   padding: 10px; 
 }
 

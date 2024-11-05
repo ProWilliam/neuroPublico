@@ -184,6 +184,7 @@
   gap: 12px;
   margin-top: 16px;
   z-index: 5;
+  pointer-events: none;
 }
 
 .carousel-button {
@@ -192,6 +193,7 @@
   cursor: pointer;
   color: #666;
   transition: all 0.2s ease;
+  pointer-events: auto;
 }
 
 .carousel-button:disabled {
@@ -297,6 +299,7 @@
   padding: 24px;
   margin-bottom: 20px;
   gap: 20px;
+  z-index: 100;
 }
 
 .channel-section {

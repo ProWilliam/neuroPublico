@@ -11,13 +11,13 @@ import './Dashboard.styles.css';
 
 export const Dashboard: React.FC<{bange: boolean}> = ({ bange }) => {
 
-  const [activeTab, setActiveTab] = useState('Dashboard');
-
   // Context de datos
   const { updateCalculatorState, arrayProduct } = useCalculator();
 
   // States
+  const [activeTab, setActiveTab] = useState('Dashboard');
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [activeButton, setActiveButton] = useState('Chat');
 
 
   // Inicializar calculadora de métricas
@@ -49,6 +49,10 @@ export const Dashboard: React.FC<{bange: boolean}> = ({ bange }) => {
         carousel.style.transform = `translateX(-${slideAmount * (currentSlide - 1)}px)`;
       }
     }
+  };
+
+  const handleButtonClick = (channel: any) => {
+    setActiveButton(channel);
   };
 
   useEffect(() => {
@@ -134,10 +138,30 @@ export const Dashboard: React.FC<{bange: boolean}> = ({ bange }) => {
               <div className="channel-section">
                 <span className="section-label">Canal de venta:</span>
                 <div className="channel-buttons">
-                  <button className="channel-btn active">Chat</button>
-                  <button className="channel-btn">Página de venta</button>
-                  <button className="channel-btn">VSL</button>
-                  <button className="channel-btn">Webinar</button>
+                  <button
+                    className={`channel-btn ${activeButton === 'Chat' ? 'active' : ''}`}
+                    onClick={() => handleButtonClick('Chat')}
+                  >
+                    Chat
+                  </button>
+                  <button
+                    className={`channel-btn ${activeButton === 'Página de venta' ? 'active' : ''}`}
+                    onClick={() => handleButtonClick('Página de venta')}
+                  >
+                    Página de venta
+                  </button>
+                  <button
+                    className={`channel-btn ${activeButton === 'VSL' ? 'active' : ''}`}
+                    onClick={() => handleButtonClick('VSL')}
+                  >
+                    VSL
+                  </button>
+                  <button
+                    className={`channel-btn ${activeButton === 'Webinar' ? 'active' : ''}`}
+                    onClick={() => handleButtonClick('Webinar')}
+                  >
+                    Webinar
+                  </button>
                 </div>
               </div>
 
@@ -260,10 +284,30 @@ export const Dashboard: React.FC<{bange: boolean}> = ({ bange }) => {
             <div className="channel-section">
               <span className="section-label">Canal de venta:</span>
               <div className="channel-buttons">
-                <button className="channel-btn active">Chat</button>
-                <button className="channel-btn">Página de venta</button>
-                <button className="channel-btn">VSL</button>
-                <button className="channel-btn">Webinar</button>
+                <button
+                  className={`channel-btn ${activeButton === 'Chat' ? 'active' : ''}`}
+                  onClick={() => handleButtonClick('Chat')}
+                >
+                  Chat
+                </button>
+                <button
+                  className={`channel-btn ${activeButton === 'Página de venta' ? 'active' : ''}`}
+                  onClick={() => handleButtonClick('Página de venta')}
+                >
+                  Página de venta
+                </button>
+                <button
+                  className={`channel-btn ${activeButton === 'VSL' ? 'active' : ''}`}
+                  onClick={() => handleButtonClick('VSL')}
+                >
+                  VSL
+                </button>
+                <button
+                  className={`channel-btn ${activeButton === 'Webinar' ? 'active' : ''}`}
+                  onClick={() => handleButtonClick('Webinar')}
+                >
+                  Webinar
+                </button>
               </div>
             </div>
 

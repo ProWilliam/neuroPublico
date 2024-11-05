@@ -14,6 +14,7 @@ export const CalculatorResults: React.FC = () => {
   const { 
     calculatorState, 
     updateCalculatorState, 
+    resetCalculatorState,
     arrayProduct, 
     productArray,
     backProductArray
@@ -21,8 +22,8 @@ export const CalculatorResults: React.FC = () => {
   const { showCartNotification } = useNotification();
 
   const [isListVisible, setIsListVisible] = useState(true);
-  const [isCostVisible, setIsCostVisible] = useState(true);
-  const [isFixedVisible, setIsFixedVisible] = useState(true);
+  const [isCostVisible, setIsCostVisible] = useState(false);
+  const [isFixedVisible, setIsFixedVisible] = useState(false);
   const [isPriceBadge, setIsPriceBadge] = useState(true);
   const [isOpenDetails, setIsOpenDetails] = useState(false);
 
@@ -33,14 +34,26 @@ export const CalculatorResults: React.FC = () => {
   const navigate = useNavigate();
 
   const handleToggleListVisibility = () => {
+    setIsCostVisible(false);
+    setIsFixedVisible(false);
+    setIsOpenDetails(false)
+
     setIsListVisible((prev) => !prev); 
   };
 
   const handleToggleCostVisibility = () => {
+    setIsFixedVisible(false);
+    setIsListVisible(false);
+    setIsOpenDetails(false);
+
     setIsCostVisible((prev) => !prev); 
   };
 
   const handleToggleFixedVisibility = () => {
+    setIsCostVisible(false);
+    setIsListVisible(false);
+    setIsOpenDetails(false);
+
     setIsFixedVisible((prev) => !prev); 
   };
 
@@ -59,6 +72,7 @@ export const CalculatorResults: React.FC = () => {
     setIsCostVisible(false);
     setIsFixedVisible(false);
     setIsOpenDetails(false);
+
     
     const newProduct: productType = {
       product: 'Nuevo Producto',
@@ -92,8 +106,12 @@ export const CalculatorResults: React.FC = () => {
         desiredMonthlyProfit: calculatorState.desiredMonthlyProfit
       };
 
-      const result = await calculatorService.createProjection(data);
-      console.log('Proyección creada:', result);
+      // const result = await calculatorService.createProjection(data);
+
+      
+      navigate('/calculator')
+      resetCalculatorState();
+      // console.log('Proyección creada:', result);
       
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error al crear la proyección');
