@@ -10,7 +10,6 @@ class CalculatorService {
 
   async createProjection(data: CalculatorData) {
     try {
-      console.log('api is: ', this.apiUrl);
       const response = await fetch(`${this.apiUrl}`, {
         method: 'POST',
         headers: {

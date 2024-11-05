@@ -1,10 +1,12 @@
 import React, { useRef, useEffect, useState} from 'react';
-import './InputRange.styles.css';
 import { useCalculator } from '../../context/Calculator/CalculatorContext';
 import { InputRangeProps } from './InputRange.type';
+import './InputRange.styles.css';
 
-export const InputRange:React.FC<InputRangeProps> = ({field}) => {
+export const InputRange:React.FC<InputRangeProps> = ({ field }) => {
+
   const { calculatorState } =  useCalculator();
+
   const progressBarRef = useRef<HTMLDivElement | null>(null);
   const [progress, setProgress] = useState(0);
 
@@ -13,7 +15,6 @@ export const InputRange:React.FC<InputRangeProps> = ({field}) => {
     const initialProgress = Number(calculatorState[field]);
     if (!isNaN(initialProgress)) {
       setProgress((((1/2 * initialProgress) / (5/2 * initialProgress)) * 100));
-      console.log(progress);
     }
   }, [calculatorState[field]]);
 

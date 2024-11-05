@@ -1,9 +1,11 @@
-export interface CalculatorState {
+export interface productType {
   product: string;
   pricePerUnit: string;
   costPerUnit: string;
   desiredMonthlyProfit: string;
+}
 
+export interface CalculatorState extends productType {
   revenue?: number;          // Ingresos totales
   adSpend?: number;         // Inversión en publicidad
   variableCosts?: number;   // Costos variables
@@ -20,4 +22,7 @@ export interface CalculatorContextType {
   updateProgress: (field: keyof CalculatorState, value: number) => void;
   resetCalculatorState: () => void;
   calculateProfit: () => number;
+  productArray: (newProduct: productType) => void;
+  arrayProduct: productType[];
+  backProductArray: () => void;
 }

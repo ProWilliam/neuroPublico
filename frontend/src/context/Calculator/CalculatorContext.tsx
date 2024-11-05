@@ -1,5 +1,8 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
-import { CalculatorContextType, CalculatorState } from './CalculatorContext.type';
+import { CalculatorContextType, CalculatorState, productType } from './CalculatorContext.type';
+
+const initialArrayProduct: productType[] = []
+
 
 const initialState: CalculatorState = {
   product: '',
@@ -20,6 +23,7 @@ const CalculatorContext = createContext<CalculatorContextType | undefined>(undef
 
 export function CalculatorProvider({ children }: { children: ReactNode }) {
   const [calculatorState, setCalculatorState] = useState<CalculatorState>(initialState);
+  const [arrayProduct, setArrayProduct] = useState<productType[]>([]);
 
   const updateCalculatorState = (updates: Partial<CalculatorState> | keyof CalculatorState, value?: string) => {
     if (typeof updates === "string") {
@@ -42,8 +46,17 @@ export function CalculatorProvider({ children }: { children: ReactNode }) {
     }));
   }
 
+  const productArray = (newProduct: productType) => {
+    setArrayProduct(prevArray => [...prevArray, newProduct]);
+  };
+
+  const backProductArray = () => {
+    setArrayProduct((prevProducts) => prevProducts.slice(0, -1));
+  }
+
   const resetCalculatorState = () => {
     setCalculatorState(initialState);
+    setArrayProduct(initialArrayProduct);
   };
 
   const calculateProfit = () => {
@@ -59,7 +72,10 @@ export function CalculatorProvider({ children }: { children: ReactNode }) {
         updateCalculatorState,
         updateProgress,
         resetCalculatorState,
-        calculateProfit
+        calculateProfit,
+        productArray,
+        arrayProduct,
+        backProductArray,
       }}
     >
       {children}

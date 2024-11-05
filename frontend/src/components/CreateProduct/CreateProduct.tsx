@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useCalculator } from '../../context/Calculator/CalculatorContext';
+import { productType } from '../../context/Calculator/CalculatorContext.type';
 import { useNotification } from '../../context/Notifications/NotificationContext';
 import { InputCreate } from '../InputCreate/InputCreate';
 
@@ -10,7 +11,7 @@ import coinImage from '../../../public/imageCoin.png';
 import './CreateProduct.styles.css';
 
 export const CreateProduct: React.FC = () => {
-  const { calculatorState} = useCalculator();
+  const { calculatorState, productArray} = useCalculator();
   const { showCartNotification } = useNotification();
   const navigate = useNavigate();
 
@@ -26,7 +27,15 @@ export const CreateProduct: React.FC = () => {
           !calculatorState.costPerUnit || !calculatorState.desiredMonthlyProfit) {
         throw new Error('Por favor completa todos los campos');
       }
+
+      const newProduct: productType = {
+        product: calculatorState.product,
+        costPerUnit: calculatorState.costPerUnit,
+        desiredMonthlyProfit: calculatorState.desiredMonthlyProfit,
+        pricePerUnit: calculatorState.pricePerUnit
+      };
       
+      productArray(newProduct);
       navigate('dashboard');
       showCartNotification('Producto agregado')
       

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCalculator } from '../../context/Calculator/CalculatorContext';
+import { productType } from '../../context/Calculator/CalculatorContext.type';
 import { useNotification } from '../../context/Notifications/NotificationContext';
 import { ArrowReturnIcon, DropDownIcon, DropUpIcon } from '../Icons/index';
 import { AddProductButton } from '../ButtonAdd/ButtonAdd';
@@ -8,23 +9,17 @@ import { Dashboard } from '../Dashboard/Dashboart';
 import { calculatorService } from '../../services/calculator/calculator.service';
 import './CalculatorResults.styles.css';
 
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  cost: number;
-}
-
 export const CalculatorResults: React.FC = () => {
 
-  const { calculatorState, updateCalculatorState } = useCalculator();
+  const { 
+    calculatorState, 
+    updateCalculatorState, 
+    arrayProduct, 
+    productArray,
+    backProductArray
+  } = useCalculator();
   const { showCartNotification } = useNotification();
 
-  const productsData: Product[] = [
-    { id: 1, title: calculatorState.product, price: parseInt(calculatorState.pricePerUnit), cost: parseInt(calculatorState.costPerUnit) },
-  ];
-
-  const [products, setProducts] = useState<Product[]>(productsData);
   const [isListVisible, setIsListVisible] = useState(true);
   const [isCostVisible, setIsCostVisible] = useState(true);
   const [isFixedVisible, setIsFixedVisible] = useState(true);
@@ -35,9 +30,7 @@ export const CalculatorResults: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   console.log(error);
 
-
   const navigate = useNavigate();
-  
 
   const handleToggleListVisibility = () => {
     setIsListVisible((prev) => !prev); 
@@ -62,19 +55,28 @@ export const CalculatorResults: React.FC = () => {
   };
 
   const handleAddNewProduct = () => {
-    setProducts((prevProducts) => [
-      ...prevProducts,
-      {
-          id: prevProducts.length + 1,
-          title: calculatorState.product,
-          price: parseInt(calculatorState.pricePerUnit),
-          cost: parseInt(calculatorState.costPerUnit)
-      }
-    ]);
+
+    setIsCostVisible(false);
+    setIsFixedVisible(false);
+    setIsOpenDetails(false);
+    
+    const newProduct: productType = {
+      product: 'Nuevo Producto',
+      pricePerUnit: '100',
+      desiredMonthlyProfit: '30000',
+      costPerUnit: '40000'
+    };
+
+    productArray(newProduct)
+    
   }
 
   const handleBackProduct = () => {
-    setProducts((prevProducts) => prevProducts.slice(0, -1));
+    if(arrayProduct.length > 1){
+      backProductArray();
+    }else {
+      showCartNotification('No puedes retroceder más')
+    }
   }
 
   const saveProduct = async () => {
@@ -102,10 +104,11 @@ export const CalculatorResults: React.FC = () => {
   }
 
   React.useEffect(() => {
-    if (!calculatorState.product) {
+    if (!arrayProduct[0].product) {
       navigate('..');
     }
-  }, [calculatorState.product, navigate]);
+    
+  }, [arrayProduct, navigate]);
 
   return (
     <>
@@ -151,21 +154,21 @@ export const CalculatorResults: React.FC = () => {
             <h3>Productos:</h3>
           </div>
           <div className={`products-list ${isListVisible ? 'visible' : ''}`}>
-            {products.map((product) => (
-              <div key={product.id} className="product-card">
+            {arrayProduct.map((product, index) => (
+              <div key={index + 1} className="product-card">
                 <div className="product-number">
                   <div className="product-id">
-                    {product.id}
+                    {index + 1}
                   </div>
                 </div>
                 <div className="vertical-line"></div>
                 <div className="product-info">
-                  <div className="product-title">{product.title}</div>
+                  <div className="product-title">{product.product}</div>
                   <div className="date-product">
                     <span>Precio:</span>
                     <input
                       type="number"
-                      value={product.price}
+                      value={product.pricePerUnit}
                       onChange={(e) => updateCalculatorState("pricePerUnit", e.target.value)}
                       className="product-input"
                       placeholder="Precio"

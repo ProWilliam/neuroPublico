@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { useCalculator } from '../../context/Calculator/CalculatorContext';
-import { DashboardMetrics } from '../../utils/DashboardCalculations';
-import { InputRange } from '../InputRange/InputRange';
+import { ProductIteratorDetails } from '../ProductIteratorDetails/ProductIteratorDetails';
+import { InputRange } from '../InputRange/InputRange'
+import { ButtonCarousel } from '../ButtonCarousel/ButtonCarousel';
+import { DashboardMetrics } from '../../utils/DashboardCalculations';;
 import { DropDownIcon, QuestionMarkIcon } from '../Icons/index';
 import { sampleData } from '../../constants/mockData';
+
 import './Dashboard.styles.css';
 
-export const Dashboard: React.FC<{bange: boolean}> = ({bange}) => {
-  console.log("entre");
+export const Dashboard: React.FC<{bange: boolean}> = ({ bange }) => {
 
   const [activeTab, setActiveTab] = useState('Dashboard');
 
-  // Ejemplo de datos
-  
-
   // Context de datos
-  const {calculatorState, updateCalculatorState} = useCalculator();
+  const { updateCalculatorState, arrayProduct } = useCalculator();
 
-  console.log(calculatorState);
+  // States
+  const [currentSlide, setCurrentSlide] = useState(0);
+
 
   // Inicializar calculadora de métricas
   const metrics = new DashboardMetrics(sampleData);
@@ -25,11 +26,30 @@ export const Dashboard: React.FC<{bange: boolean}> = ({bange}) => {
   // Calcular todas las métricas
   const totalBilling = metrics.getTotalBilling();
   const costs = metrics.getTotalCosts();
-  const costPerSale = metrics.getCostPerSale();
-  const roas = metrics.getROAS();
   const costPerMessage = metrics.getCostPerMessage();
   const closeRate = metrics.getCloseRate();
-  const profitPerUnit = metrics.getProfitPerUnit();
+
+  const handleNext = () => {
+    if (currentSlide < arrayProduct.length - 2) {
+      const slideAmount =  554; // 442px (width) + 16px (gap)
+      setCurrentSlide(currentSlide + 1);
+      const carousel: any = document.querySelector('.carousel-product');
+      if (carousel) {
+        carousel.style.transform = `translateX(-${slideAmount * (currentSlide + 1)}px)`;
+      }
+    }
+  };
+  
+  const handlePrev = () => {
+    if (currentSlide > 0) {
+      const slideAmount = 554; // 442px (width) + 16px (gap)
+      setCurrentSlide(currentSlide - 1);
+      const carousel: any = document.querySelector('.carousel-product');
+      if (carousel) {
+        carousel.style.transform = `translateX(-${slideAmount * (currentSlide - 1)}px)`;
+      }
+    }
+  };
 
   useEffect(() => {
     updateCalculatorState(sampleData); 
@@ -56,151 +76,126 @@ export const Dashboard: React.FC<{bange: boolean}> = ({bange}) => {
       </div>
 
       {activeTab === 'Dashboard' ? (
-        <div className="dashboard-container">
-          <div className="main-card">
-            <div className="billing-section">
-              <div className="billing-left">
-                <span className="label">Facturación</span>
-                <div className="amount">{DashboardMetrics.formatCurrency(totalBilling, bange)}</div>
+        <>
+          <div className="dashboard-container">
+            <div className="main-card">
+              <div className="billing-section">
+                <div className="billing-left">
+                  <span className="label">Facturación</span>
+                  <div className="amount">{DashboardMetrics.formatCurrency(totalBilling, bange)}</div>
+                </div>
+                <div className="vertical-line-dasboard"></div>
+                <div className="billing-right">
+                  <div className="cost-item">
+                    <span>Inversión en publicidad</span>
+                    <span className="value">- {DashboardMetrics.formatCurrency(costs.advertising, bange)}</span>
+                  </div>
+                  <div className="cost-item">
+                    <span>Costos variables</span>
+                    <span className="value">- {DashboardMetrics.formatCurrency(costs.variable, bange)}</span>
+                  </div>
+                  <div className="cost-item">
+                    <span>Gastos fijos</span>
+                    <span className="value">- {DashboardMetrics.formatCurrency(costs.fixed, bange)}</span>
+                  </div>
+                </div>
+                <button className="toggle-btn">
+                  <div className='box-toggle'>
+                    <DropDownIcon />
+                  </div>
+                </button>
               </div>
-              <div className="billing-right">
-                <div className="cost-item">
-                  <span>Inversión en publicidad</span>
-                  <span className="value">- {DashboardMetrics.formatCurrency(costs.advertising, bange)}</span>
-                </div>
-                <div className="cost-item">
-                  <span>Costos variables</span>
-                  <span className="value">- {DashboardMetrics.formatCurrency(costs.variable, bange)}</span>
-                </div>
-                <div className="cost-item">
-                  <span>Gastos fijos</span>
-                  <span className="value">- {DashboardMetrics.formatCurrency(costs.fixed, bange)}</span>
-                </div>
-              </div>
-              <button className="toggle-btn">
-                <div className='box-toggle'>
-                  <DropDownIcon />
-                </div>
-              </button>
+
+              { arrayProduct.length === 1 && (<ProductIteratorDetails bange={bange}/>) }
+
             </div>
 
-            <div className="product-section">
-              <div className="product-header">
-                <h3>{calculatorState.product}</h3>
+            {arrayProduct.length >= 2 && (
+              <div className="carousel-container">
+                <div 
+                  className="carousel-product" 
+                  style={{ 
+                    transform: `translateX(-${currentSlide * 452.5}px%)`,
+                  }}
+                >
+                  {arrayProduct.map(( product ,index) => (
+                    <div className="carousel-item" key={index}>
+                      <ProductIteratorDetails bange={bange} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            
 
-                <div className="metric-card" style={{width: '62%', marginLeft: '20px'}}>
+            <div className="line-dashboard"></div>
+
+            <div className="marketing-card">
+              <div className="channel-section">
+                <span className="section-label">Canal de venta:</span>
+                <div className="channel-buttons">
+                  <button className="channel-btn active">Chat</button>
+                  <button className="channel-btn">Página de venta</button>
+                  <button className="channel-btn">VSL</button>
+                  <button className="channel-btn">Webinar</button>
+                </div>
+              </div>
+
+              <div className="marketing-metrics" style={{width: '100%', background: 'linear-gradient(to bottom, #3D66B7, 29457C)'}}>
+                <div className="metrics-title">
+                <h4>Métricas de marketing</h4>
+                <div className="metric-card" style={{width: '60%'}}>
                   <div className="metric-header">
                     <div className="content-cost-sold">
-                      <span>Costo por venta</span>
-                      <div className="metric-value">{DashboardMetrics.formatCurrency(costPerSale, bange)}</div>
-                    </div>
-                    <InputRange field="totalSales" />
-                    <div className="info-icon-cost-sold">
+                        <span>Costo por mensaje</span>
+                        <div className="metric-value">{DashboardMetrics.formatCurrency(costPerMessage, bange)}</div>
+                      </div>
+                      <div className="progress-bar-message">
+                        <InputRange field="adSpend"/>
+                      </div>
+                      <div className="info-icon-cost-sold">
+                        <span className="info-icon">
+                          <QuestionMarkIcon />
+                        </span>
+                      </div>
+                  </div>
+                </div>
+                </div>
+                <div className="metrics-marketing-row">
+
+                  <div className="metric-card">
+                    <div className="metric-header">
+                      <span>Conversaciones iniciadas</span>
                       <span className="info-icon">
                         <QuestionMarkIcon />
                       </span>
                     </div>
+                    <div className="metric-value">{sampleData.conversations.toLocaleString()}</div>
                   </div>
-                </div>
 
-              </div>
-
-              
-              <div className="metrics-row">
-                
-                <div className="metric-card">
-                  <div className="metric-header">
-                    <span># Ventas</span>
-                    <span className="info-icon">
-                      <QuestionMarkIcon />
-                    </span>
-                  </div>
-                  <div className="metric-value">{sampleData.totalSales.toLocaleString()}</div>
-                </div>
-
-                <div className="metric-card">
-                  <div className="metric-header">
-                    <span>Ganancias por unidad</span>
-                    <span className="info-icon">
-                      <QuestionMarkIcon />
-                    </span>
-                  </div>
-                  <div className="metric-value">{DashboardMetrics.formatCurrency(profitPerUnit, bange)}</div>
-                </div>
-                
-                <div className="metric-card">
-                  <div className="metric-header">
-                    <span>ROAS</span>
-                    <span className="info-icon">
-                      <QuestionMarkIcon />
-                    </span>
-                  </div>
-                  <div className="metric-value">{roas.toFixed(2)}</div>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-
-          <div className="line-dashboard"></div>
-
-          <div className="marketing-card">
-            <div className="channel-section">
-              <span className="section-label">Canal de venta:</span>
-              <div className="channel-buttons">
-                <button className="channel-btn active">Chat</button>
-                <button className="channel-btn">Página de venta</button>
-                <button className="channel-btn">VSL</button>
-                <button className="channel-btn">Webinar</button>
-              </div>
-            </div>
-
-            <div className="marketing-metrics" style={{width: '100%', background: 'linear-gradient(to bottom, #3D66B7, 29457C)'}}>
-              <div className="metrics-title">
-              <h4>Métricas de marketing</h4>
-              <div className="metric-card" style={{width: '60%'}}>
-                <div className="metric-header">
-                  <div className="content-cost-sold">
-                      <span>Costo por mensaje</span>
-                      <div className="metric-value">{DashboardMetrics.formatCurrency(costPerMessage, bange)}</div>
-                    </div>
-                    <div className="progress-bar-message">
-                      <InputRange field="adSpend"/>
-                    </div>
-                    <div className="info-icon-cost-sold">
+                  <div className="metric-card">
+                    <div className="metric-header">
+                      <span>% Cierre</span>
                       <span className="info-icon">
                         <QuestionMarkIcon />
                       </span>
                     </div>
-                </div>
-              </div>
-              </div>
-              <div className="metrics-marketing-row">
-
-                <div className="metric-card">
-                  <div className="metric-header">
-                    <span>Conversaciones iniciadas</span>
-                    <span className="info-icon">
-                      <QuestionMarkIcon />
-                    </span>
+                    <div className="metric-value">{DashboardMetrics.formatPercentage(closeRate)}</div>
                   </div>
-                  <div className="metric-value">{sampleData.conversations.toLocaleString()}</div>
-                </div>
-
-                <div className="metric-card">
-                  <div className="metric-header">
-                    <span>% Cierre</span>
-                    <span className="info-icon">
-                      <QuestionMarkIcon />
-                    </span>
-                  </div>
-                  <div className="metric-value">{DashboardMetrics.formatPercentage(closeRate)}</div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+          <div className="carousel-controls">
+            <div className='carousel-button' style={{visibility: `${currentSlide === 0 ? 'hidden' : 'visible' }`}}>
+              <ButtonCarousel direction='left' cliked={handlePrev} />
+            </div>
+
+            <div className='carousel-button' style={{visibility: `${currentSlide >= arrayProduct.length - 2 ? 'hidden' : 'visible' }`}}>
+              <ButtonCarousel direction='right' cliked={handleNext} />
+            </div>
+          </div>
+        </>
       ) : (
         <div className="dashboard-container">
           <div className="main-card-summary">
