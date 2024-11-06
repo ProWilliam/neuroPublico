@@ -114,6 +114,7 @@ export const CalculatorResults: React.FC = () => {
       console.log('Proyección creada:', result);
       
     } catch (err) {
+      showCartNotification('No se creo la proyección, Vuelve a intentarlo')
       setError(err instanceof Error ? err.message : 'Error al crear la proyección');
     } finally {
       setLoading(false);

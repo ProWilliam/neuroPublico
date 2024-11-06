@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { NotificationProvider } from './context/Notifications/NotificationContext';
 import { SupportIcon, SearchIcon } from './components/Icons/index';
 import { Sidebar } from './components/Sidebar/Sidebar';
@@ -29,7 +29,8 @@ export const App: React.FC = () => {
             </div>
             <div className="content">
               <Routes>
-                <Route path="/" element={<DashboardPage />} />
+                <Route path="/" element={<Navigate to="/calculator" />} />
+                <Route path="/home" element={<DashboardPage />} />
                 <Route path="calculator/*" element={<Calculator />} />
                 <Route path='apiRickAndMorty' element={<RickAndMortyList />} />
               </Routes>

@@ -26,7 +26,7 @@ export const Sidebar: React.FC = () => {
     {
       title: null,
       items: [
-        { icon: <HomeIcon />, text: 'Inicio', key: 'home', route: '/' },
+        { icon: <HomeIcon />, text: 'Inicio', key: 'home', route: '/home' },
         { icon: <SalesIcon />, text: 'Ventas', key: 'sales', route: '/sales' },
         { icon: <ProductIcon />, text: 'Productos', key: 'products', route: '/products' }
       ]

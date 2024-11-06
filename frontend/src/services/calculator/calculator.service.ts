@@ -5,11 +5,12 @@ class CalculatorService {
   private readonly apiUrl: string;
 
   constructor() {
-    this.apiUrl = 'http://127.0.0.1:3000/product';
+    this.apiUrl = import.meta.env.VITE_URL_BACKEND + import.meta.env.VITE_PATH_PRODUCT;
   }
 
   async createProjection(data: CalculatorData) {
     try {
+      console.log(this.apiUrl);
       const response = await fetch(`${this.apiUrl}`, {
         method: 'POST',
         headers: {
