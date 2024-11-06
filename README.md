@@ -55,19 +55,19 @@ npm install
 - Frontend:
   Create .env file in the root of your project with the following information.
 ```env
-URL_BACKEND=tu_ip_backend_con_port
-PATH_PRODUCT=product
+VITE_URL_BACKEND=your_ip_backend_with_port
+VITE_PATH_PRODUCT=product
 ```
 
 - Backend:
   Create .env file in the root of your project with the following information.
 ```env
-DB_URI=tu_uri_de_mongodb_atlas
+DB_URI=your_uri_the_mongodb_atlas
 ```
 
 4. Start the server:
 ```bash
-npm run start
+npm run start:dev
 ```
 
 5. Start the frontend:
