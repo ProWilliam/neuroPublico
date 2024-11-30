@@ -123,7 +123,7 @@ export const CalculatorResults: React.FC = () => {
   }
 
   React.useEffect(() => {
-    if (!arrayProduct[0].product) {
+    if (!arrayProduct.length || !arrayProduct[0]?.product) {
       navigate('..');
     }
     
